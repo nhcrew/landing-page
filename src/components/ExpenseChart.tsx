@@ -50,6 +50,15 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
 
   const budgetPercentage = budget ? (totalExpenses / budget) * 100 : 0
 
+  // Get current month and year for display
+  const currentDate = new Date()
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ]
+  const currentMonth = monthNames[currentDate.getMonth()]
+  const currentYear = currentDate.getFullYear()
+
   // Custom tooltip to show percentage of budget
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -165,6 +174,9 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      <div className="chart-month-label">
+        Month of {currentMonth} {currentYear}
+      </div>
     </div>
   )
 }

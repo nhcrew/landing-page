@@ -57,6 +57,14 @@
   background: #fee2e2;
 }
 
+.chart-month-label {
+  text-align: center;
+  margin-top: 0.75rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+}
+
 .chart-empty {
   display: flex;
   flex-direction: column;
