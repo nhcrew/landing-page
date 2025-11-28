@@ -1,0 +1,272 @@
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f4f6ff 0%, #ffffff 60%, #f4f6ff 100%);
+  padding-bottom: 2rem;
+}
+
+.dashboard-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0;
+}
+
+.dashboard-header-top {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  color: #4a5565;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #4f39f6;
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4f39f6;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.wallet-icon {
+  color: #4f39f6;
+}
+
+.dashboard-title-section {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.title-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title-icon {
+  color: #4f39f6;
+}
+
+.title-content h1 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #101828;
+  margin: 0;
+}
+
+.subtitle {
+  color: #4a5565;
+  font-size: 0.95rem;
+  margin: 0.25rem 0 0 0;
+}
+
+.add-expense-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #4f39f6, #9810fa);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(79, 57, 246, 0.3);
+}
+
+.add-expense-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(79, 57, 246, 0.4);
+}
+
+.dashboard-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3f4f6;
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon.blue {
+  background: #e0f2fe;
+  color: #0284c7;
+}
+
+.card-icon.green {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.card-icon.purple {
+  background: #f3e8ff;
+  color: #9333ea;
+}
+
+.card-content {
+  flex: 1;
+}
+
+.card-label {
+  color: #4a5565;
+  font-size: 0.875rem;
+  margin: 0 0 0.25rem 0;
+}
+
+.card-value {
+  color: #101828;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.filter-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3f4f6;
+}
+
+.filter-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.filter-header h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #101828;
+  margin: 0;
+}
+
+.filter-header svg {
+  color: #4a5565;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filter-btn {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #4a5565;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  border-color: #4f39f6;
+  color: #4f39f6;
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, #4f39f6, #9810fa);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.expense-list-container {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3f4f6;
+  min-height: 400px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.empty-icon {
+  color: #d1d5dc;
+  margin-bottom: 1.5rem;
+}
+
+.empty-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #101828;
+  margin: 0 0 0.5rem 0;
+}
+
+.empty-subtitle {
+  color: #4a5565;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .dashboard-title-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-expense-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .summary-cards {
+    grid-template-columns: 1fr;
+  }
+}
+

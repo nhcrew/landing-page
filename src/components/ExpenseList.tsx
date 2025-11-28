@@ -38,7 +38,7 @@ const ExpenseList = ({ expenses, onDelete, onEdit }: ExpenseListProps) => {
   }
 
   const categories = [
-    'Food',
+    'Food & Dining',
     'Transport',
     'Shopping',
     'Bills',
@@ -172,5 +172,6 @@ const ExpenseList = ({ expenses, onDelete, onEdit }: ExpenseListProps) => {
 }
 
 export default ExpenseList
+
 
 
