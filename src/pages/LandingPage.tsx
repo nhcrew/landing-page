@@ -6,13 +6,11 @@ const HERO_IMAGE =
   'https://www.figma.com/api/mcp/asset/d5bad4c8-db95-4301-b8ce-a2cc0d64fd58'
 const DASHBOARD_IMAGE =
   'https://www.figma.com/api/mcp/asset/84ef00db-85d3-4141-a08f-fc43a6bb13d6'
+// Stock photos from Unsplash
 const AVATARS = {
-  sarah:
-    'https://www.figma.com/api/mcp/asset/6634f133-f5be-4dc6-933e-327c45e4fff9',
-  michael:
-    'https://www.figma.com/api/mcp/asset/2527ae8d-cc42-4e38-9cf7-d1243fed8dbf',
-  emily:
-    'https://www.figma.com/api/mcp/asset/f5b2785d-1ae8-4492-9e28-924b7a165f21',
+  person1: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face',
+  person2: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+  person3: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
 }
 
 const NAV_LINKS = [
@@ -57,23 +55,23 @@ const TESTIMONIALS = [
   {
     quote:
       '"ExpenseTrack has completely changed how I manage my student budget. I saved over $500 last semester just by being more aware of my spending patterns!"',
-    name: 'Ava Patel',
+    name: 'Jessica Chen',
     role: 'Junior, Business Major',
-    avatar: AVATARS.sarah,
+    avatar: AVATARS.person1,
   },
   {
     quote:
       '"The best budgeting app for students, hands down. Simple, beautiful, and actually helps me stick to my budget. The insights are incredibly valuable."',
-    name: 'Liam Brooks',
+    name: 'Marcus Thompson',
     role: 'Senior, Computer Science',
-    avatar: AVATARS.michael,
+    avatar: AVATARS.person2,
   },
   {
     quote:
       '"I love how easy it is to track everything. The category breakdowns help me see exactly where I need to cut back. Highly recommend to all students!"',
-    name: 'Zoe Ramirez',
+    name: 'Sofia Martinez',
     role: 'Sophomore, Psychology',
-    avatar: AVATARS.emily,
+    avatar: AVATARS.person3,
   },
 ]
 
