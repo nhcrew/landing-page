@@ -37,6 +37,33 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
 
   const budgetPercentage = budget ? (totalExpenses / budget) * 100 : 0
 
+  // Custom tooltip to show percentage of budget
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      const value = payload[0].value as number
+      const categoryPercentage = budget ? (value / budget) * 100 : 0
+      const totalPercentage = budget ? (value / totalExpenses) * 100 : 0
+
+      return (
+        <div className="custom-tooltip">
+          <p className="tooltip-label">{label}</p>
+          <p className="tooltip-value">${value.toFixed(2)}</p>
+          {budget && (
+            <>
+              <p className="tooltip-percentage">
+                {categoryPercentage.toFixed(1)}% of budget
+              </p>
+              <p className="tooltip-percentage-secondary">
+                {totalPercentage.toFixed(1)}% of total expenses
+              </p>
+            </>
+          )}
+        </div>
+      )
+    }
+    return null
+  }
+
   if (categoryData.length === 0) {
     return (
       <div className="expense-chart-container">
@@ -80,16 +107,7 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
             tick={{ fill: '#4a5565', fontSize: 12 }}
             tickFormatter={(value) => `$${value}`}
           />
-          <Tooltip
-            contentStyle={{
-              backgroundColor: '#ffffff',
-              border: '1px solid #e5e7eb',
-              borderRadius: '8px',
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-            }}
-            formatter={(value: number) => [`$${value.toFixed(2)}`, 'Amount']}
-            labelStyle={{ color: '#101828', fontWeight: 600 }}
-          />
+          <Tooltip content={<CustomTooltip />} />
           {budget && (
             <ReferenceLine
               y={budget}
@@ -98,12 +116,17 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
               strokeDasharray="5 5"
               label={
                 <Label
-                  value={`Budget: $${budget.toFixed(2)} (${budgetPercentage.toFixed(1)}%)`}
-                  position="right"
+                  value={`Budget: $${budget.toFixed(2)} | ${budgetPercentage.toFixed(1)}% Used`}
+                  position="insideTopRight"
                   fill="#ef4444"
-                  fontSize={12}
-                  fontWeight={600}
-                  offset={10}
+                  fontSize={11}
+                  fontWeight={700}
+                  style={{
+                    backgroundColor: '#fee2e2',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    border: '1px solid #ef4444',
+                  }}
                 />
               }
             />

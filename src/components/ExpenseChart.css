@@ -76,6 +76,41 @@
   color: #6b7280;
 }
 
+.custom-tooltip {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.tooltip-label {
+  font-weight: 600;
+  color: #101828;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.875rem;
+}
+
+.tooltip-value {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #4f39f6;
+  margin: 0 0 0.5rem 0;
+}
+
+.tooltip-percentage {
+  font-size: 0.875rem;
+  color: #ef4444;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}
+
+.tooltip-percentage-secondary {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin: 0.25rem 0 0 0;
+}
+
 @media (max-width: 768px) {
   .expense-chart-container {
     padding: 1.5rem;
