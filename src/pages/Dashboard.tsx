@@ -187,7 +187,7 @@ const Dashboard = ({
           </div>
         </div>
 
-        <ExpenseChart expenses={expenses} />
+        <ExpenseChart expenses={expenses} budget={budget} />
 
         <div className="expense-list-container">
           {filteredExpenses.length === 0 ? (

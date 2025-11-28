@@ -1,15 +1,16 @@
 import { useMemo } from 'react'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, ReferenceLine, Label } from 'recharts'
 import { Expense } from '../App'
 import './ExpenseChart.css'
 
 interface ExpenseChartProps {
   expenses: Expense[]
+  budget: number | null
 }
 
 const COLORS = ['#4f39f6', '#9810fa', '#16a34a', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#ec4899']
 
-const ExpenseChart = ({ expenses }: ExpenseChartProps) => {
+const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
   const categoryData = useMemo(() => {
     const categoryTotals: Record<string, number> = {}
 
@@ -28,6 +29,14 @@ const ExpenseChart = ({ expenses }: ExpenseChartProps) => {
       .sort((a, b) => b.amount - a.amount)
   }, [expenses])
 
+  const totalExpenses = useMemo(() => {
+    return expenses
+      .filter((e) => e.type === 'expense')
+      .reduce((sum, e) => sum + e.amount, 0)
+  }, [expenses])
+
+  const budgetPercentage = budget ? (totalExpenses / budget) * 100 : 0
+
   if (categoryData.length === 0) {
     return (
       <div className="expense-chart-container">
@@ -42,7 +51,17 @@ const ExpenseChart = ({ expenses }: ExpenseChartProps) => {
 
   return (
     <div className="expense-chart-container">
-      <h3 className="chart-title">Expenses by Category</h3>
+      <div className="chart-header">
+        <h3 className="chart-title">Expenses by Category</h3>
+        {budget && (
+          <div className="budget-indicator">
+            <span className="budget-label">Budget: ${budget.toFixed(2)}</span>
+            <span className={`budget-percentage ${budgetPercentage >= 100 ? 'over' : budgetPercentage >= 80 ? 'warning' : ''}`}>
+              {budgetPercentage.toFixed(1)}%
+            </span>
+          </div>
+        )}
+      </div>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={categoryData}
@@ -71,6 +90,24 @@ const ExpenseChart = ({ expenses }: ExpenseChartProps) => {
             formatter={(value: number) => [`$${value.toFixed(2)}`, 'Amount']}
             labelStyle={{ color: '#101828', fontWeight: 600 }}
           />
+          {budget && (
+            <ReferenceLine
+              y={budget}
+              stroke="#ef4444"
+              strokeWidth={2}
+              strokeDasharray="5 5"
+              label={
+                <Label
+                  value={`Budget: $${budget.toFixed(2)} (${budgetPercentage.toFixed(1)}%)`}
+                  position="right"
+                  fill="#ef4444"
+                  fontSize={12}
+                  fontWeight={600}
+                  offset={10}
+                />
+              }
+            />
+          )}
           <Bar 
             dataKey="amount" 
             radius={[8, 8, 0, 0]}
