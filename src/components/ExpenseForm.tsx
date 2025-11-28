@@ -15,7 +15,7 @@ const ExpenseForm = ({ onSubmit }: ExpenseFormProps) => {
   const [type, setType] = useState<'income' | 'expense'>('expense')
 
   const categories = [
-    'Food',
+    'Food & Dining',
     'Transport',
     'Shopping',
     'Bills',

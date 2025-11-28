@@ -4,6 +4,7 @@ import { Wallet, Plus, Filter, DollarSign, TrendingUp, Clock } from 'lucide-reac
 import { Expense } from '../App'
 import AddExpenseModal from '../components/AddExpenseModal'
 import ExpenseList from '../components/ExpenseList'
+import ExpenseChart from '../components/ExpenseChart'
 import './Dashboard.css'
 
 interface DashboardProps {
@@ -149,6 +150,8 @@ const Dashboard = ({
             ))}
           </div>
         </div>
+
+        <ExpenseChart expenses={expenses} />
 
         <div className="expense-list-container">
           {filteredExpenses.length === 0 ? (
