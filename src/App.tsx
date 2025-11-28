@@ -24,7 +24,12 @@ const AVATARS = {
     'https://www.figma.com/api/mcp/asset/f5b2785d-1ae8-4492-9e28-924b7a165f21',
 }
 
-const NAV_LINKS = ['Features', 'How It Works', 'Testimonials', 'Contact']
+const NAV_LINKS = [
+  { label: 'Features', href: '#features' },
+  { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Testimonials', href: '#testimonials' },
+  { label: 'Contact', href: '#contact' },
+]
 
 const FEATURE_CARDS = [
   {
@@ -61,23 +66,39 @@ const TESTIMONIALS = [
   {
     quote:
       '"ExpenseTrack has completely changed how I manage my student budget. I saved over $500 last semester just by being more aware of my spending patterns!"',
-    name: 'Sarah Johnson',
+    name: 'Ava Patel',
     role: 'Junior, Business Major',
     avatar: AVATARS.sarah,
   },
   {
     quote:
       '"The best budgeting app for students, hands down. Simple, beautiful, and actually helps me stick to my budget. The insights are incredibly valuable."',
-    name: 'Michael Chen',
+    name: 'Liam Brooks',
     role: 'Senior, Computer Science',
     avatar: AVATARS.michael,
   },
   {
     quote:
       '"I love how easy it is to track everything. The category breakdowns help me see exactly where I need to cut back. Highly recommend to all students!"',
-    name: 'Emily Rodriguez',
+    name: 'Zoe Ramirez',
     role: 'Sophomore, Psychology',
     avatar: AVATARS.emily,
+  },
+]
+
+const HOW_STEPS = [
+  {
+    title: 'Connect & Import',
+    description: 'Sync your accounts or add transactions manually in seconds.',
+  },
+  {
+    title: 'Categorize Smartly',
+    description: 'Let XpenseTracker auto-tag spending or refine with quick edits.',
+  },
+  {
+    title: 'Review Insights',
+    description:
+      'Spot trends, set alerts, and get personalized nudges to stay on budget.',
   },
 ]
 
@@ -97,8 +118,8 @@ function App(): JSX.Element {
           </div>
           <nav className="nav-links" aria-label="Primary">
             {NAV_LINKS.map((link) => (
-              <a key={link} href="#" className="nav-link">
-                {link}
+              <a key={link.label} href={link.href} className="nav-link">
+                {link.label}
               </a>
             ))}
           </nav>
@@ -135,6 +156,24 @@ function App(): JSX.Element {
             <div className="hero-image">
               <div className="hero-gradient" />
               <img src={HERO_IMAGE} alt="Student managing finances" loading="lazy" />
+            </div>
+          </div>
+        </section>
+
+        <section className="xpense-how" id="how-it-works">
+          <div className="xpense-container">
+            <header className="section-header centered">
+              <p className="section-eyebrow">How It Works</p>
+              <h2>Get up and running in three simple steps</h2>
+            </header>
+            <div className="how-grid">
+              {HOW_STEPS.map((step, index) => (
+                <article key={step.title} className="how-step">
+                  <span className="step-number">{index + 1}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.description}</p>
+                </article>
+              ))}
             </div>
           </div>
         </section>

@@ -149,6 +149,41 @@
       .feature-card h3 {
         margin: 1.5rem 0 0.75rem;
       }
+      .xpense-how {
+        padding: 96px 0;
+      }
+      .how-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+      }
+      .how-step {
+        border: 1px solid #e5e7eb;
+        border-radius: 24px;
+        padding: 2rem;
+        background: #ffffff;
+        box-shadow: 0 30px 60px -40px rgba(15, 23, 42, 0.35);
+      }
+      .how-step h3 {
+        margin-bottom: 0.75rem;
+        font-size: 1.15rem;
+      }
+      .how-step p {
+        color: #4a5565;
+        line-height: 1.6;
+      }
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(79, 57, 246, 0.1);
+        color: #4f39f6;
+        font-weight: 600;
+        margin-bottom: 1rem;
+      }
       .testimonial-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -255,7 +290,7 @@
           </div>
           <div class="nav-links">
             <a href="#features">Features</a>
-            <a href="#how">How It Works</a>
+            <a href="#how-it-works">How It Works</a>
             <a href="#testimonials">Testimonials</a>
             <a href="#contact">Contact</a>
           </div>
@@ -294,6 +329,30 @@
             alt="Student managing finances"
             loading="lazy"
           />
+        </div>
+      </section>
+
+      <section id="how-it-works" class="xpense-container xpense-how">
+        <div class="section-heading">
+          <p class="eyebrow">How It Works</p>
+          <h2>Get up and running in three simple steps</h2>
+        </div>
+        <div class="how-grid">
+          <article class="how-step">
+            <span class="step-number">1</span>
+            <h3>Connect & Import</h3>
+            <p>Sync your accounts or add transactions manually in seconds.</p>
+          </article>
+          <article class="how-step">
+            <span class="step-number">2</span>
+            <h3>Categorize Smartly</h3>
+            <p>Let XpenseTracker auto-tag spending or refine with quick edits.</p>
+          </article>
+          <article class="how-step">
+            <span class="step-number">3</span>
+            <h3>Review Insights</h3>
+            <p>Spot trends, set alerts, and stay on budget with personalized nudges.</p>
+          </article>
         </div>
       </section>
 
@@ -356,10 +415,10 @@
             <div class="author">
               <img
                 src="https://www.figma.com/api/mcp/asset/8c590db5-3db6-4b15-af35-8c2c3f3df6b0"
-                alt="Sarah Johnson"
+                alt="Ava Patel"
               />
               <div>
-                <strong>Sarah Johnson</strong>
+                <strong>Ava Patel</strong>
                 <p>Junior, Business Major</p>
               </div>
             </div>
@@ -373,10 +432,10 @@
             <div class="author">
               <img
                 src="https://www.figma.com/api/mcp/asset/2527ae8d-cc42-4e38-9cf7-d1243fed8dbf"
-                alt="Michael Chen"
+                alt="Liam Brooks"
               />
               <div>
-                <strong>Michael Chen</strong>
+                <strong>Liam Brooks</strong>
                 <p>Senior, Computer Science</p>
               </div>
             </div>
@@ -390,10 +449,10 @@
             <div class="author">
               <img
                 src="https://www.figma.com/api/mcp/asset/f5b2785d-1ae8-4492-9e28-924b7a165f21"
-                alt="Emily Rodriguez"
+                alt="Zoe Ramirez"
               />
               <div>
-                <strong>Emily Rodriguez</strong>
+                <strong>Zoe Ramirez</strong>
                 <p>Sophomore, Psychology</p>
               </div>
             </div>
