@@ -11,6 +11,12 @@ interface ExpenseChartProps {
 const COLORS = ['#4f39f6', '#9810fa', '#16a34a', '#f59e0b', '#ef4444', '#8b5cf6', '#06b6d4', '#ec4899']
 
 const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
+  const totalExpenses = useMemo(() => {
+    return expenses
+      .filter((e) => e.type === 'expense')
+      .reduce((sum, e) => sum + e.amount, 0)
+  }, [expenses])
+
   const categoryData = useMemo(() => {
     const categoryTotals: Record<string, number> = {}
 
@@ -21,19 +27,26 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
           (categoryTotals[expense.category] || 0) + expense.amount
       })
 
-    return Object.entries(categoryTotals)
+    const categoryBars = Object.entries(categoryTotals)
       .map(([category, amount]) => ({
         category,
         amount: parseFloat(amount.toFixed(2)),
       }))
       .sort((a, b) => b.amount - a.amount)
-  }, [expenses])
 
-  const totalExpenses = useMemo(() => {
-    return expenses
-      .filter((e) => e.type === 'expense')
-      .reduce((sum, e) => sum + e.amount, 0)
-  }, [expenses])
+    // Add "Total Expenses" as the first bar
+    if (totalExpenses > 0) {
+      return [
+        {
+          category: 'Total Expenses',
+          amount: parseFloat(totalExpenses.toFixed(2)),
+        },
+        ...categoryBars,
+      ]
+    }
+
+    return categoryBars
+  }, [expenses, totalExpenses])
 
   const budgetPercentage = budget ? (totalExpenses / budget) * 100 : 0
 
@@ -41,8 +54,9 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       const value = payload[0].value as number
+      const isTotalExpenses = label === 'Total Expenses'
       const categoryPercentage = budget ? (value / budget) * 100 : 0
-      const totalPercentage = budget ? (value / totalExpenses) * 100 : 0
+      const totalPercentage = isTotalExpenses ? 100 : budget ? (value / totalExpenses) * 100 : 0
 
       return (
         <div className="custom-tooltip">
@@ -53,9 +67,11 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
               <p className="tooltip-percentage">
                 {categoryPercentage.toFixed(1)}% of budget
               </p>
-              <p className="tooltip-percentage-secondary">
-                {totalPercentage.toFixed(1)}% of total expenses
-              </p>
+              {!isTotalExpenses && (
+                <p className="tooltip-percentage-secondary">
+                  {totalPercentage.toFixed(1)}% of total expenses
+                </p>
+              )}
             </>
           )}
         </div>
@@ -106,6 +122,7 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
           <YAxis
             tick={{ fill: '#4a5565', fontSize: 12 }}
             tickFormatter={(value) => `$${value}`}
+            domain={budget ? [0, Math.max(totalExpenses, budget) * 1.1] : [0, 'auto']}
           />
           <Tooltip content={<CustomTooltip />} />
           {budget && (
@@ -136,9 +153,15 @@ const ExpenseChart = ({ expenses, budget }: ExpenseChartProps) => {
             radius={[8, 8, 0, 0]}
             barSize={60}
           >
-            {categoryData.map((_, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-            ))}
+            {categoryData.map((entry, index) => {
+              // Use a distinct color for "Total Expenses"
+              const fillColor = entry.category === 'Total Expenses' 
+                ? '#4f39f6' 
+                : COLORS[(index - 1) % COLORS.length]
+              return (
+                <Cell key={`cell-${index}`} fill={fillColor} />
+              )
+            })}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
