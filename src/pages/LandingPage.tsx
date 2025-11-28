@@ -54,7 +54,7 @@ const FEATURE_CARDS = [
 const TESTIMONIALS = [
   {
     quote:
-      '"ExpenseTrack has completely changed how I manage my student budget. I saved over $500 last semester just by being more aware of my spending patterns!"',
+      '"XpenseTracker has completely changed how I manage my student budget. I saved over $500 last semester just by being more aware of my spending patterns!"',
     name: 'Jessica Chen',
     role: 'Junior, Business Major',
     avatar: AVATARS.person1,

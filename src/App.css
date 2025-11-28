@@ -237,6 +237,10 @@
   color: #4a5565;
 }
 
+.section-eyebrow.light {
+  color: #ffffff;
+}
+
 .section-heading {
   display: flex;
   flex-direction: column;

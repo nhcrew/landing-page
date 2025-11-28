@@ -1,26 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Wallet, Plus, Filter, DollarSign, TrendingUp, Clock } from 'lucide-react'
+import { Wallet, Plus, Filter, DollarSign, TrendingUp, Clock, Target } from 'lucide-react'
 import { Expense } from '../App'
 import AddExpenseModal from '../components/AddExpenseModal'
 import ExpenseList from '../components/ExpenseList'
 import ExpenseChart from '../components/ExpenseChart'
+import BudgetModal from '../components/BudgetModal'
+import BudgetAlert from '../components/BudgetAlert'
 import './Dashboard.css'
 
 interface DashboardProps {
   expenses: Expense[]
+  budget: number | null
   onAddExpense: (expense: Omit<Expense, 'id'>) => void
   onDeleteExpense: (id: string) => void
   onEditExpense: (id: string, expense: Omit<Expense, 'id'>) => void
+  onSetBudget: (amount: number) => void
 }
 
 const Dashboard = ({
   expenses,
+  budget,
   onAddExpense,
   onDeleteExpense,
   onEditExpense,
+  onSetBudget,
 }: DashboardProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [isBudgetModalOpen, setIsBudgetModalOpen] = useState(false)
+  const [showBudgetAlert, setShowBudgetAlert] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState<string>('All')
 
   const categories = [
@@ -70,6 +78,24 @@ const Dashboard = ({
       ? Object.entries(categoryCounts).sort((a, b) => b[1] - a[1])[0][0]
       : 'None'
 
+  // Check if budget is exceeded when expenses change
+  useEffect(() => {
+    if (budget !== null && thisMonthExpenses >= budget && thisMonthExpenses > 0) {
+      // Show alert when budget is hit or exceeded
+      const timeoutId = setTimeout(() => {
+        setShowBudgetAlert(true)
+      }, 500) // Small delay to ensure state is updated
+      return () => clearTimeout(timeoutId)
+    } else {
+      setShowBudgetAlert(false)
+    }
+  }, [thisMonthExpenses, budget])
+
+  const handleAddExpense = (expense: Omit<Expense, 'id'>) => {
+    onAddExpense(expense)
+    setIsModalOpen(false)
+  }
+
   return (
     <div className="dashboard">
       <header className="dashboard-header">
@@ -79,7 +105,7 @@ const Dashboard = ({
           </Link>
           <div className="header-brand">
             <Wallet className="wallet-icon" size={24} />
-            <span>ExpenseTrack</span>
+            <span>XpenseTracker</span>
           </div>
         </div>
         <div className="dashboard-title-section">
@@ -90,13 +116,23 @@ const Dashboard = ({
               <p className="subtitle">Manage your budget wisely</p>
             </div>
           </div>
-          <button
-            className="add-expense-btn"
-            onClick={() => setIsModalOpen(true)}
-          >
-            <Plus size={20} />
-            Add Expense
-          </button>
+          <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+            <button
+              className="set-budget-btn"
+              onClick={() => setIsBudgetModalOpen(true)}
+              title={budget ? `Current budget: $${budget.toFixed(2)}` : 'Set monthly budget'}
+            >
+              <Target size={20} />
+              {budget ? `Budget: $${budget.toFixed(2)}` : 'Set Budget'}
+            </button>
+            <button
+              className="add-expense-btn"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <Plus size={20} />
+              Add Expense
+            </button>
+          </div>
         </div>
       </header>
 
@@ -175,10 +211,23 @@ const Dashboard = ({
       {isModalOpen && (
         <AddExpenseModal
           onClose={() => setIsModalOpen(false)}
-          onSubmit={(expense) => {
-            onAddExpense(expense)
-            setIsModalOpen(false)
-          }}
+          onSubmit={handleAddExpense}
+        />
+      )}
+
+      {isBudgetModalOpen && (
+        <BudgetModal
+          onClose={() => setIsBudgetModalOpen(false)}
+          onSubmit={onSetBudget}
+          currentBudget={budget}
+        />
+      )}
+
+      {showBudgetAlert && budget !== null && (
+        <BudgetAlert
+          onClose={() => setShowBudgetAlert(false)}
+          budget={budget}
+          currentSpending={thisMonthExpenses}
         />
       )}
     </div>

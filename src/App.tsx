@@ -20,9 +20,22 @@ function App() {
     return saved ? JSON.parse(saved) : []
   })
 
+  const [budget, setBudget] = useState<number | null>(() => {
+    const saved = localStorage.getItem('budget')
+    return saved ? parseFloat(saved) : null
+  })
+
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(expenses))
   }, [expenses])
+
+  useEffect(() => {
+    if (budget !== null) {
+      localStorage.setItem('budget', budget.toString())
+    } else {
+      localStorage.removeItem('budget')
+    }
+  }, [budget])
 
   const addExpense = (expense: Omit<Expense, 'id'>) => {
     const newExpense: Expense = {
@@ -44,6 +57,10 @@ function App() {
     )
   }
 
+  const setBudgetAmount = (amount: number) => {
+    setBudget(amount)
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -53,9 +70,11 @@ function App() {
           element={
             <Dashboard
               expenses={expenses}
+              budget={budget}
               onAddExpense={addExpense}
               onDeleteExpense={deleteExpense}
               onEditExpense={editExpense}
+              onSetBudget={setBudgetAmount}
             />
           }
         />

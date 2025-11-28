@@ -1,0 +1,17 @@
+.budget-modal {
+  max-width: 450px;
+}
+
+.budget-form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.current-budget {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
