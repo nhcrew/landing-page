@@ -1,0 +1,254 @@
+.demo-page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f4f6ff 0%, #ffffff 60%, #f4f6ff 100%);
+}
+
+.demo-header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 1rem 0;
+}
+
+.demo-header-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.back-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4a5565;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #4f39f6;
+}
+
+.demo-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #101828;
+}
+
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #4f39f6, #9810fa);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.demo-main {
+  padding: 4rem 0;
+}
+
+.demo-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.demo-header-section {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.demo-header-section h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #101828;
+  margin: 0 0 1rem 0;
+}
+
+.demo-subtitle {
+  font-size: 1.125rem;
+  color: #4a5565;
+  margin: 0;
+}
+
+.demo-video-placeholder {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 4rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3f4f6;
+  margin-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.demo-video-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(79, 57, 246, 0.05), rgba(152, 16, 250, 0.05));
+  z-index: 0;
+}
+
+.video-icon {
+  position: relative;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f39f6, #9810fa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 10px 30px rgba(79, 57, 246, 0.3);
+}
+
+.placeholder-text {
+  position: relative;
+  z-index: 1;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #101828;
+  margin: 0 0 0.5rem 0;
+}
+
+.placeholder-subtext {
+  position: relative;
+  z-index: 1;
+  font-size: 1rem;
+  color: #4a5565;
+  margin: 0;
+  text-align: center;
+  max-width: 500px;
+}
+
+.demo-features {
+  margin-bottom: 4rem;
+}
+
+.demo-features h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #101828;
+  text-align: center;
+  margin: 0 0 2rem 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.feature-item {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f3f4f6;
+  text-align: center;
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-item h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #101828;
+  margin: 0 0 0.75rem 0;
+}
+
+.feature-item p {
+  color: #4a5565;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.demo-cta {
+  background: linear-gradient(120deg, #4f39f6, #9810fa 60%, #f54900);
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  color: #ffffff;
+}
+
+.demo-cta h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  color: #ffffff;
+}
+
+.demo-cta p {
+  font-size: 1.125rem;
+  margin: 0 0 2rem 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.demo-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  color: #4f39f6;
+  border: none;
+  border-radius: 12px;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  font-size: 1.125rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.demo-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 768px) {
+  .demo-header-section h1 {
+    font-size: 2rem;
+  }
+
+  .demo-video-placeholder {
+    min-height: 300px;
+    padding: 3rem 1.5rem;
+  }
+
+  .video-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .video-icon svg {
+    width: 48px;
+    height: 48px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

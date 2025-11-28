@@ -1,6 +1,8 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { JSX } from 'react'
 import '../App.css'
+import './LandingPage.css'
 
 const HERO_IMAGE =
   'https://www.figma.com/api/mcp/asset/d5bad4c8-db95-4301-b8ce-a2cc0d64fd58'
@@ -98,6 +100,8 @@ const FOOTER_LINKS = {
 
 function LandingPage(): JSX.Element {
   const navigate = useNavigate()
+  const [showEmailAlert, setShowEmailAlert] = useState(false)
+  const [email, setEmail] = useState('')
 
   return (
     <div className="xpense-app">
@@ -140,7 +144,12 @@ function LandingPage(): JSX.Element {
                 >
                   Start Tracking Free
                 </button>
-                <button className="ghost-btn">Watch Demo</button>
+                <button 
+                  className="ghost-btn"
+                  onClick={() => navigate('/demo')}
+                >
+                  Watch Demo
+                </button>
               </div>
               <div className="hero-stats">
                 <div>
@@ -273,10 +282,27 @@ function LandingPage(): JSX.Element {
           <div className="footer-subscribe">
             <h3>Stay Updated</h3>
             <p>Subscribe to our newsletter for tips, updates, and exclusive offers.</p>
-            <form className="subscribe-form">
+            <form 
+              className="subscribe-form"
+              onSubmit={(e) => {
+                e.preventDefault()
+                if (email) {
+                  setShowEmailAlert(true)
+                  setEmail('')
+                  setTimeout(() => setShowEmailAlert(false), 3000)
+                }
+              }}
+            >
               <div className="input-group">
                 <span aria-hidden="true">📧</span>
-                <input type="email" placeholder="Enter your email" aria-label="Email address" />
+                <input 
+                  type="email" 
+                  placeholder="Enter your email" 
+                  aria-label="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
               </div>
               <button className="primary-btn" type="submit">
                 Subscribe
@@ -300,6 +326,16 @@ function LandingPage(): JSX.Element {
           <p>© {new Date().getFullYear()} XpenseTracker. All rights reserved.</p>
         </div>
       </footer>
+
+      {showEmailAlert && (
+        <div className="email-alert-overlay">
+          <div className="email-alert">
+            <div className="alert-icon">✓</div>
+            <h3>Email Subscribed Successfully!</h3>
+            <p>Thank you for subscribing to our newsletter.</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -73,9 +73,20 @@ const Dashboard = ({
     {} as Record<string, number>
   )
 
+  // Calculate top category by amount spent, not count
+  const categoryAmounts = expenses
+    .filter((e) => e.type === 'expense')
+    .reduce(
+      (acc, e) => {
+        acc[e.category] = (acc[e.category] || 0) + e.amount
+        return acc
+      },
+      {} as Record<string, number>
+    )
+
   const topCategory =
-    Object.keys(categoryCounts).length > 0
-      ? Object.entries(categoryCounts).sort((a, b) => b[1] - a[1])[0][0]
+    Object.keys(categoryAmounts).length > 0
+      ? Object.entries(categoryAmounts).sort((a, b) => b[1] - a[1])[0][0]
       : 'None'
 
   // Check if budget is exceeded when expenses change

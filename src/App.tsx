@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import LandingPage from './pages/LandingPage'
 import Dashboard from './pages/Dashboard'
+import Demo from './pages/Demo'
 import './App.css'
 
 // Legacy type export retained so existing components continue to compile.
@@ -78,6 +79,7 @@ function App() {
             />
           }
         />
+        <Route path="/demo" element={<Demo />} />
       </Routes>
     </BrowserRouter>
   )
