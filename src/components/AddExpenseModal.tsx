@@ -13,11 +13,7 @@ const AddExpenseModal = ({ onClose, onSubmit }: AddExpenseModalProps) => {
   const [amount, setAmount] = useState('0.00')
   const [category, setCategory] = useState('Food & Dining')
   const [date, setDate] = useState(
-    new Date().toLocaleDateString('en-US', {
-      month: '2-digit',
-      day: '2-digit',
-      year: 'numeric',
-    })
+    new Date().toISOString().split('T')[0]
   )
 
   const categories = [
@@ -35,33 +31,17 @@ const AddExpenseModal = ({ onClose, onSubmit }: AddExpenseModalProps) => {
     e.preventDefault()
     if (!description || !amount || parseFloat(amount) <= 0) return
 
-    const [month, day, year] = date.split('/')
-    const isoDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-
     onSubmit({
       title: description,
       amount: parseFloat(amount),
       category,
-      date: isoDate,
+      date: date, // date is already in ISO format (YYYY-MM-DD)
       type: 'expense',
     })
   }
 
-  const formatDateForInput = (dateStr: string) => {
-    const [month, day, year] = dateStr.split('/')
-    return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
-  }
-
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputDate = e.target.value
-    const dateObj = new Date(inputDate)
-    setDate(
-      dateObj.toLocaleDateString('en-US', {
-        month: '2-digit',
-        day: '2-digit',
-        year: 'numeric',
-      })
-    )
+    setDate(e.target.value) // Input value is already in ISO format (YYYY-MM-DD)
   }
 
   return (
@@ -122,7 +102,7 @@ const AddExpenseModal = ({ onClose, onSubmit }: AddExpenseModalProps) => {
               <input
                 type="date"
                 id="date"
-                value={formatDateForInput(date)}
+                value={date}
                 onChange={handleDateChange}
                 required
               />
