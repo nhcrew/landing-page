@@ -47,6 +47,7 @@ const ExpenseChart = ({ expenses }: ExpenseChartProps) => {
         <BarChart
           data={categoryData}
           margin={{ top: 20, right: 30, left: 20, bottom: 60 }}
+          barCategoryGap="20%"
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
           <XAxis
@@ -70,7 +71,11 @@ const ExpenseChart = ({ expenses }: ExpenseChartProps) => {
             formatter={(value: number) => [`$${value.toFixed(2)}`, 'Amount']}
             labelStyle={{ color: '#101828', fontWeight: 600 }}
           />
-          <Bar dataKey="amount" radius={[8, 8, 0, 0]}>
+          <Bar 
+            dataKey="amount" 
+            radius={[8, 8, 0, 0]}
+            barSize={60}
+          >
             {categoryData.map((_, index) => (
               <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
             ))}
